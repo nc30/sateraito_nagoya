@@ -11,39 +11,6 @@
   // let conami=(cb)=>{let c=[38,38,40,40,37,39,37,39,66,65],p=0;document.addEventListener('keydown',(e)=>{if(e.keyCode!=c[p]){p=0;return}if(++p>=c.length){p=0;try{cb()}catch(e){};return;}});};
   // conami(()=>{console.log('conami')})
 
-  document.addEventListener('keydown',(e)=>{
-    if(e.key === 'G'){
-      smooth.animateScroll(document.body.clientHeight)
-      return
-    }
-    if(e.key === 'g'){
-      smooth.animateScroll(0)
-      history.replaceState('', '', '/')
-      return
-    }
-    if(e.key === 'j'){
-      window.scrollTo(0, window.pageYOffset + 80)
-      return
-    }
-    if(e.key === 'k'){
-      window.scrollTo(0, window.pageYOffset - 80)
-      return
-    }
-    if(e.key === 'Escape'){
-      smooth.animateScroll(0)
-      return
-    }
-    if(e.key === 'f'){
-      smooth.animateScroll(window.pageYOffset + document.documentElement.clientHeight)
-      return
-    }
-    if(e.key === 'b'){
-      smooth.animateScroll(window.pageYOffset - document.documentElement.clientHeight)
-      return
-    }
-  })
-
-
   export default{
     components: {
       Footer,
@@ -56,12 +23,13 @@
     methods: {
       goTo(id) {
         let y = document.getElementById(id)
-        y && smooth.animateScroll(y.getBoundingClientRect().y)
-        this.$router.push({path: '/'+id})
+        // y && smooth.animateScroll(y.getBoundingClientRect().y)
+        y && smooth.animateScroll(y)
+        this.$router.replace({path: '/'+id})
       },
       goHead() {
         smooth.animateScroll(0)
-        this.$router.push({path: '/'})
+        this.$router.replace({path: '/'})
       },
       up() {
         smooth.animateScroll(document.scrollY - 30)

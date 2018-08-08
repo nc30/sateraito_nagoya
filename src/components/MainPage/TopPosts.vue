@@ -23,7 +23,7 @@
         posts: [],
         loading: false,
         page: 1,
-        next: false
+        total_pages: 0
       }
     },
     methods: {
@@ -33,30 +33,19 @@
           params: {
             _embed: 'yes',
             page: this.page,
-            per_page: this.per_page
+            per_page: this.per_page,
           }
         })
           .then((r) => {
+            this.total_pages = Number(r.headers['x-wp-totalpages'])
             this.posts = r.data
             this.loading = false
           })
           .catch((r) => {
+            if(r.response.status == 400) {
+              this.$router.replace('/404')
+            }
             this.loading = false
-          })
-        if (!this.navigation) {
-          return
-        }
-        api.get('/posts', {
-          params: {
-            page: this.page + 1,
-            per_page: this.per_page
-          }
-        })
-          .then((r) => {
-            this.next = true
-          })
-          .catch((r) => {
-            this.next = false
           })
       },
       goNext() {
@@ -70,10 +59,10 @@
     },
     computed :{
       isNext() {
-        return this.navigation && this.next
+        return this.total_pages > this.page && this.navigation
       },
       isBefore() {
-        return this.navigation && this.page > 1
+        return this.page > 1 && this.navigation
       },
     },
     watch: {
@@ -83,9 +72,6 @@
       }
     },
     created () {
-      if (this.$route.name === 'posts_page') {
-        this.page = Number(this.$route.params.page)
-      }
       if (this.$route.name === 'posts_page') {
         this.page = Number(this.$route.params.page)
       }
@@ -105,7 +91,4 @@
     <span v-if="isBefore" @click="goBefore">before</span>
     <span v-if="isNext" @click="goNext">next</span>
   </div>
-</template>
-
-<style>
-</style>
+</template>isBefore

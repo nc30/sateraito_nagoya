@@ -55,10 +55,9 @@
 </template>
 
 <style lang="scss">
-._retry {
-  cursor: pointer;
-  display: block;
-  text-decoration: underline;;
-}
-
+  ._retry {
+    cursor: pointer;
+    display: block;
+    text-decoration: underline;;
+  }
 </style>

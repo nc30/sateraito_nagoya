@@ -34,4 +34,3 @@ if(e.key === 'b'){
   return
 }
 })
-console.log('a')
