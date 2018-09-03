@@ -11,11 +11,39 @@
         <li><a target="_blank" href="http://zsh.sourceforge.net/"><i class="icon-shell"></i></a></li>
       </ul>
     </div>
-    <p>伸びる時には必ず抵抗がある</p>
+    <p class="built">{{ word() }}</p>
   <span>(c) 2018 SateraitoNagoya</span>
   <span class="built">built:[AIV]{date}[/AIV]</span>
   </footer>
 </template>
+
+<script>
+export default{
+    data() {
+        return {
+            'soichiro': [
+                '伸びる時には必ず抵抗がある',
+                '創意工夫、独立独歩。これらを貫くには日々のたゆまぬ努力がいる',
+                '新しいことをやれば、必ずしくじる。腹が立つ。',
+                '成功とは、99の失敗を土台にした1%だ',
+                '失敗を恐れて何もしないなんて人間は最低だ',
+                '追い詰められた苦し紛れの知恵がその人の本当の力だ',
+                '挑戦しての失敗を恐れるな。何もしないことを恐れろ',
+                '挑戦をやめない限り、必ず次がある',
+                '狂人だけが常に覚醒している',
+                '一番大切なことは、自分たちは何をしてきたかということ。金なんてものはいつかなくなる',
+                '松明は自分の手で持て',
+                'やってもいないのに、本当に知っているのか？'
+            ]
+        }
+    },
+    methods: {
+        word() {
+            return this.soichiro[Math.floor(Math.random() * this.soichiro.length)]
+        }
+    }
+}
+</script>
 
 <style lang="scss">
   .footer {
