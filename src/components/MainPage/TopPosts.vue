@@ -90,5 +90,6 @@
     </ul>
     <span v-if="isBefore" @click="goBefore">before</span>
     <span v-if="isNext" @click="goNext">next</span>
+    <router-link v-if="!navigation && total_pages > 1" :to="{path: '/posts'}" >read more</router-link>
   </div>
-</template>isBefore
+</template>
