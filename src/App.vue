@@ -13,7 +13,9 @@
   }
 </script>
 
-<style>
+<style lang="scss">
+  @import '~mini.css/src/mini/core';
+  @import '~mini.css/src/mini/layout';
   #app {
     font-family: 'Ubuntu', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
