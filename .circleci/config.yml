@@ -85,7 +85,7 @@ jobs:
 
       - run:
           name: sync server
-          command: 'ssh ${SYNC_HOST} -o "StrictHostKeyChecking=no"'
+          command: 'ssh ${SYNC_USERNAME}@${SYNC_HOST} -o "StrictHostKeyChecking=no"'
 
 workflows:
   version: 2
