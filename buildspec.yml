@@ -5,8 +5,8 @@ phases:
     commands:
       - echo Build started on `date`
       - ls
-      - npm i
-      - npm rebuild node-sass
+      - npm i -d
+      # - npm rebuild node-sass
       - npm run build
 
   post_build:
