@@ -55,7 +55,6 @@ jobs:
           keys:
           - v2-dependencies-{{ checksum "package.json" }}
 
-
       - run:
           name: Install Packages
           command: 'npm i'
@@ -65,8 +64,8 @@ jobs:
           command: 'npm rebuild node-sass'
 
       - run:
-          name: add s3 tool
-          command: 'apk add python3; pip3 install awscli'
+          name: add deploy tools
+          command: 'apk add python3 openssh; pip3 install awscli'
 
       - save_cache:
           paths:
