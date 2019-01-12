@@ -31,7 +31,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - store_artifacts:
-          path: /dist/
+          path: dist/
 
       - run:
           name: Build
@@ -78,11 +78,11 @@ jobs:
           command: 'npm run build'
 
       - store_artifacts:
-          path: /dist/
+          path: dist/
 
       - run:
           name: Upload to S3
-          command: 'aws s3 sync dist/ s3://${S3_BUCKET}/sateraito_nagoya/ --region ap-northeast-1 --delete'
+          command: 'aws s3 sync dist/ s3://${S3_BUCKET}/sateraito_nagoya/ --delete'
 
 workflows:
   version: 2
