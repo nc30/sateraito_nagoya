@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:11
+      - image: node:11.6-alpine
     environment:
       TZ: Asia/Tokyo
     working_directory: ~/repo
@@ -16,8 +16,12 @@ jobs:
           - v1-dependencies-
 
       - run:
-          name: Build binary
+          name: Install Packages
           command: 'npm i'
+
+      - run:
+          name: Install Packages
+          command: 'npm rebuild node-sass'
 
       - save_cache:
           paths:
