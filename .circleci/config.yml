@@ -12,7 +12,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
 
       - run:
           name: Install Packages
@@ -43,8 +42,7 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - v2-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Install Packages
@@ -54,14 +52,19 @@ jobs:
           name: Install Packages
           command: 'npm rebuild node-sass'
 
+      - run:
+          name: Build
+          command: 'apk add python3; pip3 install awscli'
+
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v2-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Build
           command: 'npm run build'
+
 
       - run:
           name: Upload to S3
