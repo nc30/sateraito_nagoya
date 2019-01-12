@@ -67,6 +67,10 @@ jobs:
           name: add deploy tools
           command: 'apk add python3 openssh; pip3 install awscli'
 
+      - add_ssh_keys:
+          fingerprints:
+            - : "c3:98:d7:61:ce:74:b7:50:82:80:a3:5f:4d:96:72:7e"
+
       - save_cache:
           paths:
             - node_modules
@@ -85,7 +89,7 @@ jobs:
 
       - run:
           name: sync server
-          command: 'ssh ${SYNC_HOST}'
+          command: 'ssh ${SYNC_HOST} -o "StrictHostKeyChecking=no"'
 
 workflows:
   version: 2
