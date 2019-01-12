@@ -1,0 +1,55 @@
+
+//  This is a flavor file. Duplicate it and edit it to create your own flavor. Read instructions carefully.
+//  Single-line comments, starting with '//' will not be included in your final CSS file. Multiline comments,
+//  structured like the flavor description below, will be included in your final CSS file.
+/*
+  Flavor name: Dark (mini-dark)
+  Author: Angelos Chalaris (chalarangelo@gmail.com)
+  Maintainers: Angelos Chalaris
+  mini.css version: v3.0.0
+*/
+$base-root-font-size: 16px; // Root font sizing for all elements (`px` only)
+$base-line-height: 1.5; // Line height for most elements
+$fore-color: #fdfdfd; // Text & foreground color
+$secondary-fore-color: #f0f0f0; // Secondary text & foreground color
+$back-color: #111; // Background color
+$secondary-back-color: #222; // Secondary background color
+$blockquote-color: #f57c00; // <blockquote> sidebar and quotation color
+$pre-color: #1565c0; // <pre> sidebar color
+$border-color: #ddd; // Border color
+$secondary-border-color: #aaa; // Secondary border color
+$heading-line-height: 1.2; // Line height for headings
+$heading-ratio: 1.19; // Ratio for headings (strictly unitless)
+$subheading-font-size:0.75em; // Font sizing for <small> elements in headings
+$subheading-top-margin: -0.25rem; // Top margin of <small> elements in headings
+$heading-font-weight: 500; // Font weight for headings
+$horizontal-rule-line-height:  1.25em; // <hr> line height
+$universal-margin: 0.5rem; // Universal margin for the most elements
+$universal-padding: 0.5rem; // Universal padding for the most elements
+$universal-border-radius: 0.125rem; // Universal border-radius for most elements
+$universal-box-shadow: none; // Universal box-shadow for most elements
+$small-element-font-size: 0.75em; // Font size for <small>, <sub>, <sup>
+$small-font-size: 0.75em; // Font sizing for <small> elements
+$blockquote-quotation-size: 3rem;   // Font size for the quotation of <blockquote>
+$blockquote-cite-size: 0.75em; // Font size for the [cite] of <blockquote>
+$code-font-size: 0.85em; // Font size for <code>, <kbd>
+$sup-top: -0.5em; // <sup> top
+$sub-bottom: -0.25em; // <sub> bottom
+$a-link-color: #0277bd; // Color for <a>:link
+$a-visited-color: #01579b; // Color for <a>:visited
+$bold-font-weight: 700; // Font weight for <b> and <strong>
+$mobile-breakpoint: 768px; // Breakpoint between small and medium screens (px)
+$large-screen-breakpoint: 1280px; // Breakpoint between medium and large screens (px)
+
+// @import '../../node_modules/mini.css/src/mini/core';
+
+$grid-column-count: 12; // Number of columns in the grid (integer value only).
+$grid-medium-breakpoint: $mobile-breakpoint; // Medium screen breakpoint for grid.
+$grid-large-breakpoint: $large-screen-breakpoint; // Large screen breakpoint for grid.
+$card-normal-width: 320px; // Width for normal cards.
+$card-section-media-height: 200px; // Height for cards' media sections.
+$card-fore-color: #fdfdfd; // Text color for the cards.
+$card-back-color: #111; // Background color for the cards.
+$card-border-color: #aaa; // Border color for the cards.
+
+// @import '../../node_modules/mini.css/src/mini/layout';

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from '@/components/MainPage'
 import PostsPage from '@/components/PostsPage'
+// import FormPage from '@/components/FormPage'
 import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
@@ -39,6 +40,11 @@ export default new Router({
       name: 'posts_page',
       component: PostsPage
     },
+    // {
+    //   path: '/forms',
+    //   name: 'posts_page',
+    //   component: FormPage
+    // },
     {
       path: '*',
       name: 'NotFound',
