@@ -11,7 +11,7 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - node-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Install Packages
@@ -24,7 +24,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: node-dependencies-{{ checksum "package.json" }}
 
       - store_artifacts:
           path: dist/
@@ -45,7 +45,7 @@ jobs:
 
       - restore_cache:
           keys:
-          - deploy_cache-{{ checksum "package-lock.json" }}
+          - node-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Install Packages
@@ -58,9 +58,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-            - /usr/bin/aws
-            - /usr/lib/python3.6/site-packages
-          key: deploy_cache-{{ checksum "package-lock.json" }}
+          key: node-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Build
