@@ -1,0 +1,105 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:11.6-alpine
+    environment:
+      TZ: Asia/Tokyo
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      - run:
+          name: add ca-certificates
+          command: 'apk add ca-certificates'
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Install Packages
+          command: 'npm i'
+
+      - run:
+          name: Install Packages
+          command: 'npm rebuild node-sass'
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - store_artifacts:
+          path: dist/
+
+      - run:
+          name: Build
+          command: 'npm run build'
+
+
+  deploy:
+    docker:
+      - image: node:11.6-alpine
+    environment:
+      TZ: Asia/Tokyo
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      - run:
+          name: add ca-certificates
+          command: 'apk add ca-certificates'
+
+      - restore_cache:
+          keys:
+          - v2-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Install Packages
+          command: 'npm i'
+
+      - run:
+          name: Install Packages
+          command: 'npm rebuild node-sass'
+
+      - run:
+          name: add deploy tools
+          command: 'apk add python3 openssh; pip3 install awscli'
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v2-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Build
+          command: 'npm run build'
+
+      - store_artifacts:
+          path: dist/
+
+      - run:
+          name: Upload to S3
+          command: 'aws s3 sync dist/ s3://${S3_BUCKET}/sateraito_nagoya/ --delete'
+
+      - run:
+          name: sync server
+          command: 'ssh ${SYNC_USERNAME}@${SYNC_HOST} -o "StrictHostKeyChecking=no"'
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - develop
+                - /feature\/.*/
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+
