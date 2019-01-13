@@ -2,16 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:11.6-alpine
+      - image: nc30/node:11.6
     environment:
       TZ: Asia/Tokyo
     working_directory: ~/repo
     steps:
       - checkout
-
-      - run:
-          name: add ca-certificates
-          command: 'apk add ca-certificates'
 
       - restore_cache:
           keys:
@@ -40,16 +36,12 @@ jobs:
 
   deploy:
     docker:
-      - image: node:11.6-alpine
+      - image: nc30/node:11.6
     environment:
       TZ: Asia/Tokyo
     working_directory: ~/repo
     steps:
       - checkout
-
-      - run:
-          name: add ca-certificates
-          command: 'apk add ca-certificates'
 
       - restore_cache:
           keys:
@@ -62,10 +54,6 @@ jobs:
       - run:
           name: Install Packages
           command: 'npm rebuild node-sass'
-
-      - run:
-          name: add deploy tools
-          command: 'apk add python3 openssh; pip3 install awscli'
 
       - save_cache:
           paths:
